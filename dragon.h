@@ -1,13 +1,12 @@
-<<<<<<< HEAD
-#include c
-=======
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
+#define MAX_NOMBRE 20
+
 typedef struct {
-    char Nombre[MAX_NOMBRE];
-    int Fuerza;
-    int Vida;
+    char nombre[MAX_NOMBRE];
+    int fuerza;
+    int vida;
+    int oro;
 } Dragon;
->>>>>>> a02f70b23d30dd7ea7535733d2be07305e41ffe1

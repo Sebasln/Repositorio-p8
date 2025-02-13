@@ -2,8 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define MAX_NOMBRE 20
+
 typedef struct {
-    char Nombre[MAX_NOMBRE];
-    int Curacion;
-    int AumentoFuerza;
+    char nombre[MAX_NOMBRE];
+    int curacion;
+    int aumento_fuerza;
 } Utilidad;
