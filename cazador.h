@@ -14,5 +14,5 @@ typedef struct {
 } Cazador;
 
 Cazador* cazador_predeterminado();
-void crear_cazador();
+Cazador* crear_cazador();
 #endif
