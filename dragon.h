@@ -1,3 +1,5 @@
+#ifndef DRAGON_H
+#define DRAGON_H
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -10,3 +12,9 @@ typedef struct {
     int vida;
     int oro;
 } Dragon;
+
+Dragon* dragon_predeterminado();
+Dragon* crear_dragon();
+#endif
+
+
