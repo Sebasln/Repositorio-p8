@@ -23,7 +23,7 @@ int main(){
 
 			int numerin = 0;
 			printf("Elige\n");
-			scanf("%d", numerin);
+			scanf("%d", &numerin);
 
 			seleccionar_cazador(numerin);
 			break;
