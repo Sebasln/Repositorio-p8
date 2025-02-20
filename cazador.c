@@ -6,13 +6,10 @@
 #define MIN_CAZADORES 3
 #define MAX_CAZADORES 5
 
-void seleccionar_cazador(int posicion){
-	
-}
+
 
 void mostrar_cazador(Cazador * cazadores){
 	printf("Cazador: %s\nStats:\n \tAtaque:%d\n \tVida:%d\n \tOro:%d\n\n", cazadores->nombre, cazadores->fuerza, cazadores->vida, cazadores->oro);
-
 }
 
 void inicializar_cazador(Cazador * cazadores, char* Nombre, int Fuerza, int Vida, int Oro){
@@ -33,17 +30,15 @@ Cazador* cazador_predeterminado(){
 	inicializar_cazador( &cazadores[1], "Miguel", 100, 100, 0);
 	inicializar_cazador( &cazadores[2], "Sebas", 75, 125, 0);
 
-	for (int i = 0; i < MIN_CAZADORES; i++){
-		mostrar_cazador(&cazadores[i]);
-	}
+	
 
 	return cazadores;
 
 }
 
-Cazador* crear_cazador(Cazador* cazadores){
+Cazador* crear_cazador(int * num_cazadores){
 	int n = 0;
-	cazadores = cazador_predeterminado();
+	Cazador * cazadores = cazador_predeterminado();
 
 	printf("Se han añadido 3 cazadores predeterminados.\n");
 	do{
@@ -54,6 +49,8 @@ Cazador* crear_cazador(Cazador* cazadores){
 		}else if(n > 2 || n <= 0){
 			printf("Error con la cantidad introducida, recuerda que debe ser mayor que 0 y menor o igual a 2.\n");
 
+		}else{
+			*num_cazadores = MIN_CAZADORES + n;
 		}
 	}while(n > 2 || n <= 0);
 	

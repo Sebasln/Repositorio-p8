@@ -13,6 +13,7 @@ typedef struct {
     int oro;
 } Dragon;
 
+void mostrar_dragon(Dragon * dragones); 
 Dragon* dragon_predeterminado();
 Dragon* crear_dragon();
 #endif

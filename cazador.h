@@ -12,7 +12,7 @@ typedef struct {
     int vida;
     int oro;
 } Cazador;
-
+void mostrar_cazador(Cazador * cazadores);
 Cazador* cazador_predeterminado();
 Cazador* crear_cazador();
 #endif

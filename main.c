@@ -5,8 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 	
+
+
 int main(){
 	char seleccion_c[10];
+	int num_cazadores = 0;
+
 
 	Cazador * cazadores;
 	system("clear");
@@ -20,20 +24,20 @@ int main(){
 		}
 		if(seleccion_c[0] == 'p'){
 			cazadores = cazador_predeterminado();
-
-			int numerin = 0;
-			printf("Elige\n");
-			scanf("%d", &numerin);
-
-			seleccionar_cazador(numerin);
+			for(int i = 0; i < 3; i++){
+				mostrar_cazador(&cazadores[i]);
+			}
+			num_cazadores = 3;
 			break;
 		}else if(seleccion_c[0] == 'n'){
-		cazadores = crear_cazador(cazadores);
+		cazadores = crear_cazador(&num_cazadores);
 			break;
 		}else{
 			printf("Elije una opción valida. \n");
 		}
 	}while (1);
+		seleccion_personaje(cazadores, num_cazadores);
+		//system("clear");
 
 	Dragon * dragones;
 
@@ -45,14 +49,19 @@ int main(){
 		}
 		if(seleccion_c[0] == 'p'){
 			dragones = dragon_predeterminado();
+			for (int i = 0; i < 2; i++){
+				mostrar_dragon(&dragones[i]);
+			}
 			break;
 		}else if(seleccion_c[0] == 'n'){
 			dragones = crear_dragon(dragones);
+			
 			break;
 		}else{
 			printf("Elije una opción válida. \n");
 		}
 	}while (1);
+
 
 	free(cazadores);
 	free(dragones);
