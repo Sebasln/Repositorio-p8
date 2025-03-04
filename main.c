@@ -4,13 +4,13 @@
 #include "utilidades.h"
 #include <stdio.h>
 #include <stdlib.h>
-	
+
 
 
 int main(){
 	char seleccion_c[10];
 	int num_cazadores = 0;
-
+	int num_dragones = 0;
 
 	Cazador * cazadores;
 	system("clear");
@@ -30,14 +30,15 @@ int main(){
 			num_cazadores = 3;
 			break;
 		}else if(seleccion_c[0] == 'n'){
-		cazadores = crear_cazador(&num_cazadores);
+			cazadores = crear_cazador(&num_cazadores);
 			break;
 		}else{
 			printf("Elije una opción valida. \n");
 		}
 	}while (1);
-		seleccion_personaje(cazadores, num_cazadores);
-		//system("clear");
+	seleccion_personaje(cazadores, num_cazadores);
+	system("clear");
+
 
 	Dragon * dragones;
 
@@ -52,17 +53,18 @@ int main(){
 			for (int i = 0; i < 2; i++){
 				mostrar_dragon(&dragones[i]);
 			}
+			num_dragones = 2;
 			break;
 		}else if(seleccion_c[0] == 'n'){
-			dragones = crear_dragon(dragones);
-			
+			dragones = crear_dragon(&num_dragones); 
 			break;
 		}else{
 			printf("Elije una opción válida. \n");
 		}
 	}while (1);
-
-
+	seleccion_dragon(dragones,  num_dragones);
+	system("clear");
+	
 	free(cazadores);
 	free(dragones);
 	return 0;

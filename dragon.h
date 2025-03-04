@@ -15,7 +15,7 @@ typedef struct {
 
 void mostrar_dragon(Dragon * dragones); 
 Dragon* dragon_predeterminado();
-Dragon* crear_dragon();
+Dragon* crear_dragon(int * num_dragones);
 #endif
 
 

@@ -14,5 +14,5 @@ typedef struct {
 } Cazador;
 void mostrar_cazador(Cazador * cazadores);
 Cazador* cazador_predeterminado();
-Cazador* crear_cazador();
+Cazador* crear_cazador(int * num_cazadores);
 #endif

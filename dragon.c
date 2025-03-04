@@ -34,9 +34,9 @@ Dragon* dragon_predeterminado(){
 
 }
 
-Dragon* crear_dragon(Dragon* dragones){
+Dragon* crear_dragon(int * num_dragones){
 	int n = 0;
-	dragones = dragon_predeterminado();
+	Dragon * dragones = dragon_predeterminado();
 
 	printf("Se han añadido 2 dragones predeterminados.\n");
 	do{
@@ -47,6 +47,8 @@ Dragon* crear_dragon(Dragon* dragones){
 		}else if(n > 2 || n <= 0){
 			printf("Error con la cantidad introducida, recuerda que debe ser mayor que 0 y menor o igual a 2.\n");
 
+		}else{
+			*num_dragones = MIN_DRAGONES + n;
 		}
 	}while(n > 2 || n <= 0);
 		
@@ -59,7 +61,7 @@ Dragon* crear_dragon(Dragon* dragones){
 		return NULL;
 	}
 
-	printf("Introduce los datos de los dragones(Ten en cuenta que la fuerza y la vida no deben sumar más de 200 puntos):\n");
+	printf("Introduce los datos de los dragones(Ten en cuenta que la fuerza no debe superar los 40 puntos y la vida no debe superar los 660 puntos):\n");
 
 	for (int i = MIN_DRAGONES; i < n + MIN_DRAGONES; i++){
 		printf("\tIntroduce el nombre del dragón %d: ", i + 1);
