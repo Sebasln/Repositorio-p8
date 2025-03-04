@@ -11,6 +11,8 @@ int main(){
 	char seleccion_c[10];
 	int num_cazadores = 0;
 	int num_dragones = 0;
+	int eleccion_cazador = 0;
+	int eleccion_dragon = 0;
 
 	Cazador * cazadores;
 	system("clear");
@@ -36,7 +38,7 @@ int main(){
 			printf("Elije una opción valida. \n");
 		}
 	}while (1);
-	seleccion_personaje(cazadores, num_cazadores);
+	seleccion_personaje(cazadores, num_cazadores, &eleccion_cazador, &eleccion_dragon);
 	system("clear");
 
 
@@ -62,8 +64,9 @@ int main(){
 			printf("Elije una opción válida. \n");
 		}
 	}while (1);
-	seleccion_dragon(dragones,  num_dragones);
+	seleccion_dragon(dragones,  num_dragones, &eleccion_cazador, &eleccion_dragon);
 	system("clear");
+	combate(cazadores, dragones, &eleccion_cazador, &eleccion_dragon);
 	
 	free(cazadores);
 	free(dragones);
