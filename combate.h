@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-void seleccion_personaje(Cazador * cazadores, int n, int * eleccion_cazador, int * eleccion_dragon);
-void seleccion_dragon(Dragon * dragones, int n, int * eleccion_cazador, int * eleccion_dragon);
-void combate(Cazador * cazadores, Dragon * dragones,int * eleccion_cazador, int * eleccion_dragon);
+void seleccion_personaje(Cazador * cazadores, int num_cazadores, int * eleccion_cazador);
+void seleccion_dragon(Dragon * dragones, int num_dragones, int * eleccion_dragon);
+void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dragones, int * eleccion_cazador, int * eleccion_dragon );
 #endif

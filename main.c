@@ -38,8 +38,8 @@ int main(){
 			printf("Elije una opción valida. \n");
 		}
 	}while (1);
-	seleccion_personaje(cazadores, num_cazadores, &eleccion_cazador, &eleccion_dragon);
-	system("clear");
+	
+	
 
 
 	Dragon * dragones;
@@ -64,9 +64,9 @@ int main(){
 			printf("Elije una opción válida. \n");
 		}
 	}while (1);
-	seleccion_dragon(dragones,  num_dragones, &eleccion_cazador, &eleccion_dragon);
-	system("clear");
-	combate(cazadores, dragones, &eleccion_cazador, &eleccion_dragon);
+	
+	
+	combate(cazadores, dragones, num_cazadores, num_dragones, &eleccion_cazador, &eleccion_dragon);
 	
 	free(cazadores);
 	free(dragones);
