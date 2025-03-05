@@ -26,9 +26,9 @@ Cazador* cazador_predeterminado(){
 		printf("Error no se pudo reservar memoria\n");
 		exit(EXIT_FAILURE);
 	}
-	inicializar_cazador( &cazadores[0], "Roberto", 125, 75, 0);
-	inicializar_cazador( &cazadores[1], "Miguel", 100, 100, 0);
-	inicializar_cazador( &cazadores[2], "Sebas", 75, 125, 0);
+	inicializar_cazador( &cazadores[0], "Roberto", 115, 100, 0);
+	inicializar_cazador( &cazadores[1], "Miguel", 107, 108, 0);
+	inicializar_cazador( &cazadores[2], "Sebas", 65, 150, 0);
 
 	
 
@@ -77,10 +77,10 @@ Cazador* crear_cazador(int * num_cazadores){
 			scanf("%d", &cazadores[i].vida);
 
 
-			if(cazadores[i].fuerza + cazadores[i].vida > 200){
+			if(cazadores[i].fuerza + cazadores[i].vida > 215){
 				printf("Los valores de fuerza o vida sobrepasan el límite, vuelve a introducir los datos.\n");
 			}
-		} while (cazadores[i].fuerza + cazadores[i].vida > 200);
+		} while (cazadores[i].fuerza + cazadores[i].vida > 215);
 
 		printf("\tEl oro del cazador %d está predeterminado en 0.\n", i + 1);
 		cazadores[i].oro = 0;

@@ -26,7 +26,7 @@ Dragon* dragon_predeterminado(){
 		printf("Error no se pudo reservar memoria\n");
 		exit(EXIT_FAILURE);
 	}
-	inicializar_dragon( &dragones[0], "Shenlong", 20, 650, 2758);
+	inicializar_dragon( &dragones[0], "Shenlong", 20, 650, 3000);
 	inicializar_dragon( &dragones[1], "Kaido", 40, 450, 5000);
 
 		
@@ -74,14 +74,16 @@ Dragon* crear_dragon(int * num_dragones){
 			printf("\tIntroduce la vida del dragón %d:", i + 1);
 			scanf("%d", &dragones[i].vida);
 
-
 			if(dragones[i].vida > MAX_VIDA || dragones[i].fuerza > MAX_FUERZA ){
 				printf("Los valores de fuerza o vida sobrepasan el límite, vuelve a introducir los datos.\n");
 			}
+
+			dragones[i].oro = (dragones[i].vida + dragones[i].fuerza) * 10;
+		
+
 		} while (dragones[i].vida > MAX_VIDA || dragones[i].fuerza > MAX_FUERZA );
 
-		printf("\tEl oro del dragón %d está predeterminado en 0.\n", i + 1);
-		dragones[i].oro = 0;
+		
 			
 	}
 		

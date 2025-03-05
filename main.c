@@ -4,6 +4,7 @@
 #include "utilidades.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 
@@ -19,7 +20,7 @@ int main(){
 	printf("Comienza el juego: \n");
 	
 	do{
-		printf("Elije una opción:\nSeleccionar cazador predeterminado (p) \nCrear nuevo cazador (n)\n");
+		printf("Elige una opción:\nSeleccionar cazador predeterminado (p) \nCrear nuevo cazador (n)\n");
 		scanf(" %s", seleccion_c);
 		if(strlen(seleccion_c) > 2){ 
 			printf("Pon solo un caracter. \n");
@@ -35,7 +36,7 @@ int main(){
 			cazadores = crear_cazador(&num_cazadores);
 			break;
 		}else{
-			printf("Elije una opción valida. \n");
+			printf("Elige una opción valida. \n");
 		}
 	}while (1);
 	
@@ -45,7 +46,7 @@ int main(){
 	Dragon * dragones;
 
 	do{
-		printf("Elije una opción:\nSeleccionar dragon predeterminado (p) \nCrear nuevo dragon (n)\n");
+		printf("Elige una opción:\nSeleccionar dragon predeterminado (p) \nCrear nuevo dragon (n)\n");
 		scanf(" %s", seleccion_c);
 		if(strlen(seleccion_c) > 2){
 			printf("Pon solo un carácter. \n");
@@ -61,10 +62,19 @@ int main(){
 			dragones = crear_dragon(&num_dragones); 
 			break;
 		}else{
-			printf("Elije una opción válida. \n");
+			printf("Elige una opción válida. \n");
 		}
 	}while (1);
+
 	
+	printf("\nPresiona Enter para continuar...");
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF); // Limpia el buffer
+	getchar(); // Espera un nuevo Enter
+
+
+	
+	system("clear");
 	
 	combate(cazadores, dragones, num_cazadores, num_dragones, &eleccion_cazador, &eleccion_dragon);
 	

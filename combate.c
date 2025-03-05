@@ -1,23 +1,25 @@
 #include "combate.h"
 #include "cazador.h"
 #include "dragon.h"
+#include "tienda.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 
-// Función para esperar a que el usuario presione Enter
+
+
 void esperar_enter() {
     printf("\nPresiona Enter para continuar...");
-    while (getchar() != '\n'); // Espera hasta que se presione Enter
+    while (getchar() != '\n');
 }
 
-// Función para determinar si el ataque es un golpe crítico (20% de probabilidad)
+
 int es_critico() {
     return (rand() % 100) < 20;
 }
 
-// Verifica si quedan cazadores vivos
+
 int quedan_cazadores_vivos(Cazador *cazadores, int num_cazadores) {
     for (int i = 0; i < num_cazadores; i++) {
         if (cazadores[i].vida > 0) {
@@ -36,10 +38,18 @@ int quedan_dragones_vivos(Dragon * dragones, int num_dragones) {
     return 0;
 }
 
-// Elegir un cazador vivo
+
+void resultado(Cazador * cazadores){
+    printf("El cazador %s tiene un total de %d de oro.\n\n", cazadores->nombre, cazadores->oro);
+}
+
+
 void seleccion_personaje(Cazador * cazadores, int num_cazadores, int * eleccion_cazador){
     do {
-        printf("Elige un nuevo cazador (1 - %d): ", num_cazadores);
+        printf("Elige un nuevo cazador (1 - %d):\n", num_cazadores);
+        for(int i = 0; i < num_cazadores; i++){
+            mostrar_cazador(&cazadores[i]);
+        }
         if (scanf("%d", eleccion_cazador) != 1 || *eleccion_cazador < 1 || *eleccion_cazador > num_cazadores) {
             printf("Selección inválida. Intenta de nuevo.\n");
             while (getchar() != '\n');
@@ -52,10 +62,13 @@ void seleccion_personaje(Cazador * cazadores, int num_cazadores, int * eleccion_
     } while (1);
 }
 
-// Elegir un dragón vivo
+
 void seleccion_dragon(Dragon * dragones, int num_dragones, int * eleccion_dragon) {
     do {
-        printf("Elige un nuevo dragón (1 - %d): ", num_dragones);
+        printf("Elige un nuevo dragón (1 - %d):\n", num_dragones);
+        for(int i = 0; i < num_dragones; i++){
+            mostrar_dragon(&dragones[i]);
+        }
         if (scanf("%d", eleccion_dragon) != 1 || *eleccion_dragon < 1 || *eleccion_dragon > num_dragones) {
             printf("Selección inválida. Intenta de nuevo.\n");
             while (getchar() != '\n');
@@ -68,7 +81,7 @@ void seleccion_dragon(Dragon * dragones, int num_dragones, int * eleccion_dragon
     } while (1);
 }
 
-// Combate con opción de golpes críticos y pausa entre ataques
+
 void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dragones, int * eleccion_cazador, int * eleccion_dragon ) {
     srand(time(NULL));
 
@@ -83,9 +96,9 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                dragones[*eleccion_dragon].nombre);
 
         while (cazadores[*eleccion_cazador].vida > 0 && dragones[*eleccion_dragon].vida > 0) {
-            esperar_enter(); // Pausa antes de cada turno
+            esperar_enter(); 
 
-            // Turno del cazador
+       
             int daño = cazadores[*eleccion_cazador].fuerza;
             if (es_critico()) {
                 daño *= 2;
@@ -98,15 +111,28 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
             dragones[*eleccion_dragon].vida -= daño;
 
             if (dragones[*eleccion_dragon].vida <= 0) {
-                printf("🎉 ¡%s ha derrotado al dragón %s!\n",
-                       cazadores[*eleccion_cazador].nombre,
-                       dragones[*eleccion_dragon].nombre);
+                printf("🎉 ¡%s ha derrotado al dragón %s!\n El cazador %s ha recibido %d oro.\n\n\n", cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].oro);
+                cazadores[*eleccion_cazador].oro += dragones[*eleccion_dragon].oro;
+                dragones[*eleccion_dragon].vida = 0;
+            if(quedan_dragones_vivos(dragones, num_dragones)){
+                printf("¿Quieres entrar a la tienda?(s/n) ");
+                char respuesta;
+                scanf(" %c", &respuesta);
+                Pocion * pociones;
+                pociones = pocion_predeterminada();
+                if(respuesta == 's'){   
+                tienda(pociones, cazadores, num_cazadores);
+            }
+        }
+
                 break;
+                
             }
 
-            esperar_enter(); // Pausa antes del turno del dragón
 
-            // Turno del dragón
+            esperar_enter();
+
+       
             daño = dragones[*eleccion_dragon].fuerza;
             if (es_critico()) {
                 daño *= 2;
@@ -119,17 +145,27 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
             cazadores[*eleccion_cazador].vida -= daño;
 
             if (cazadores[*eleccion_cazador].vida <= 0) {
-                printf("💀 ¡El dragón %s ha derrotado a %s!\n",
-                       dragones[*eleccion_dragon].nombre,
-                       cazadores[*eleccion_cazador].nombre);
+                printf("💀 ¡El dragón %s ha derrotado a %s!\n\n\n", dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre);
+                cazadores[*eleccion_cazador].vida = 0;
                 break;
             }
+           
+            
         }
+
     }
 
     if(quedan_cazadores_vivos(cazadores, num_cazadores) != 1){
     	printf("\n⚠️ No quedan cazadores vivos. ¡El juego ha terminado!\n");
+        for(int i = 0; i < num_dragones; i++ ){
+            if(dragones[i].vida > 0){
+                mostrar_dragon(&dragones[i]);
+            }
+        }
 	}else{
 		printf("\n🥳 No quedan dragones vivos. ¡El juego ha terminado!\n");
+        for(int i = 0; i < num_cazadores; i++){
+            resultado(&cazadores[i]);
+        }
 	}
 }
