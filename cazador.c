@@ -63,7 +63,7 @@ Cazador* crear_cazador(int * num_cazadores){
 		return NULL;
 	}
 
-	printf("Introduce los datos de los cazadores(Ten en cuenta que la fuerza y la vida no deben sumar más de 200 puntos):\n");
+	printf("Introduce los datos de los cazadores(Ten en cuenta que la fuerza y la vida no deben sumar más de 215 puntos):\n");
 
 	for (int i = MIN_CAZADORES; i < n + MIN_CAZADORES; i++){
 		printf("\tIntroduce el nombre del cazador %d: ", i + 1);

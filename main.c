@@ -2,7 +2,6 @@
 #include "cazador.h"
 #include "combate.h"
 #include "dragon.h"
-#include "utilidades.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -110,12 +109,12 @@ int main(){
 	
 	esperar_enter(); 
 
-
-	
 	system("clear");
 	
 	combate(cazadores, dragones, num_cazadores, num_dragones, &eleccion_cazador, &eleccion_dragon);
 	
+	printf("Demo terminada. Gracias por jugar.\n");
+
 	free(cazadores);
 	free(dragones);
 	return 0;

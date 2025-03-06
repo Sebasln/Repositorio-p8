@@ -94,8 +94,10 @@ void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores){
     if(eleccion_pocion == 0){
     	printf("Se le ha curado 100 puntos de vida al cazador %s. \n", cazadores[compra_cazador].nombre);
     	pociones[eleccion_pocion].stock --;
+    	cazadores[compra_cazador].oro -= pociones[eleccion_pocion].coste;
     }else if(eleccion_pocion == 1){
     	printf("El ataque del cazador %s ha sido aumentada 100 puntos.\n", cazadores[compra_cazador].nombre);
     	pociones[eleccion_pocion].stock --;
+    	cazadores[compra_cazador].oro -= pociones[eleccion_pocion].coste;
     }
 }

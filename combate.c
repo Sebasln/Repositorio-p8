@@ -123,7 +123,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                     printf("El cazador %s consigue asestar el ataque final y derrota al dragón %s\n",  cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].nombre);
                 }else{
                     cazadores[*eleccion_cazador].vida = 0;
-                    printf("El cazador %s por desgracia no pudo ejecutar el ataque final con éxito y cayó derrotado en batalla.", cazadores[*eleccion_cazador].nombre);
+                    printf("El cazador %s por desgracia no pudo ejecutar el ataque final con éxito y cayó derrotado en batalla.\n", cazadores[*eleccion_cazador].nombre);
                     break;
                 }
             } else{ //mec      
@@ -143,6 +143,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                     printf("🎉 ¡%s ha derrotado al dragón %s!\n El cazador %s ha recibido %d oro.\n\n\n", cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].oro);
                     cazadores[*eleccion_cazador].oro += dragones[*eleccion_dragon].oro;
                     dragones[*eleccion_dragon].vida = 0;
+                    dragones[*eleccion_dragon].oro = 0;
                 if(quedan_dragones_vivos(dragones, num_dragones)){
                     printf("¿Quieres entrar a la tienda?(s/n) ");
                     char respuesta;
@@ -203,7 +204,6 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
         historia_final_malo();
 	}else{
 		printf("\n🥳 No quedan dragones vivos. \n");
-        printf("Ahora el reino volverá a la paz.\n");
         for(int i = 0; i < num_cazadores; i++){
             resultado(&cazadores[i]); 
         }
@@ -212,6 +212,6 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
 	}
     sleep(1);
 
-    printf("Demo terminada.\n");
+    
 
 }
