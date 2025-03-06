@@ -37,7 +37,24 @@ void mostrar_pociones(Pocion * pociones){
 
 void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores){
 	int compra_cazador = 0;
-	printf("🏪¡¡Bienvenido a la tienda de pociones!!🏪\n");
+	system("clear");
+	printf(" ____ ___ _____ _   ___     _______  _   _ ___ ____   ___  \n");
+    printf("| __ )_ _| ____| \\ | \\ \\   / / ____|| \\ | |_ _|  _ \\ / _ \\ \n");
+    printf("|  _ \\| ||  _| |  \\| |\\ \\ / /|  _|  |  \\| || || | | | | | | \n");
+    printf("| |_) | || |___| |\\  | \\ V / | |___ | |\\  || || |_| | |_| | \n");
+    printf("|____/___|_____|_| \\_|  \\_/  |_____||_| \\_|___|____/ \\___/ \n");
+    printf("                                   \n");
+	printf("\t          _         _        _     \n");
+    printf("\t         / \\       | |      / \\    \n");
+    printf("\t        / _ \\      | |     / _ \\   \n");
+    printf("\t       / ___ \\     | |___ / ___ \\  \n");
+    printf("\t      /_/   \\_\\    |_____/_/   \\_\\\n");
+    printf("                                   \n");
+    printf("\t   _____ ___ _____ _   _ ____    _    \n");
+    printf("\t  |_   _|_ _| ____| \\ | |  _ \\  / \\   \n");
+    printf("\t    | |  | ||  _| |  \\| | | | |/ _ \\  \n");
+    printf("\t    | |  | || |___| |\\  | |_| / ___ \\ \n");
+    printf("\t    |_| |___|_____|_| \\_|____/_/   \\_\\\n");
 
 	printf("Deberas elejir una de estas pociones, recuerda solo existen una de cada en todo el mundo(elige bien)\n");
 

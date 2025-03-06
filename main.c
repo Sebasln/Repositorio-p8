@@ -1,3 +1,4 @@
+#include "historia.h"
 #include "cazador.h"
 #include "combate.h"
 #include "dragon.h"
@@ -5,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 
 
@@ -14,10 +16,49 @@ int main(){
 	int num_dragones = 0;
 	int eleccion_cazador = 0;
 	int eleccion_dragon = 0;
-
 	Cazador * cazadores;
 	system("clear");
-	printf("Comienza el juego: \n");
+	for(int i = 0; i < 2; i++) {
+    	printf("  ____    _    ____   ____    _    _   _ ____   ___               \n"
+               " / ___|  / \\  |  _ \\ / ___|  / \\  | \\ | |  _ \\ / _ \\ \n"
+               "| |     / _ \\ | |_) | |  _  / _ \\ |  \\| | | | | | | | \n"
+               "| |___ / ___ \\|  _ <| |_| |/ ___ \\| |\\  | |_| | |_| |  _ \n"
+               " \\____/_/   \\_\\_| \\_\\\\____/_/   \\_\\_| \\_|____/ \\___/  (_)\n");
+		fflush(stdout); 
+		sleep(1);
+
+        system("clear");
+        printf("  ____    _    ____   ____    _    _   _ ____   ___               \n"
+               " / ___|  / \\  |  _ \\ / ___|  / \\  | \\ | |  _ \\ / _ \\              \n"
+               "| |     / _ \\ | |_) | |  _  / _ \\ |  \\| | | | | | | |            \n"
+               "| |___ / ___ \\|  _ <| |_| |/ ___ \\| |\\  | |_| | |_| |  _   _ \n"
+               " \\____/_/   \\_\\_| \\_\\\\____/_/   \\_\\_| \\_|____/ \\___/  (_) (_)\n");
+        fflush(stdout); 
+        sleep(1);
+
+        system("clear");
+        printf("  ____    _    ____   ____    _    _   _ ____   ___               \n"
+               " / ___|  / \\  |  _ \\ / ___|  / \\  | \\ | |  _ \\ / _ \\              \n"
+               "| |     / _ \\ | |_) | |  _  / _ \\ |  \\| | | | | | | |            \n"
+               "| |___ / ___ \\|  _ <| |_| |/ ___ \\| |\\  | |_| | |_| |  _   _   _ \n"
+               " \\____/_/   \\_\\_| \\_\\\\____/_/   \\_\\_| \\_|____/ \\___/  (_) (_) (_)\n");
+        fflush(stdout); 
+        sleep(1);
+        system("clear");
+	}
+
+	historia_inicial();
+	
+
+	system("clear");
+	printf("\t  _____ ____  __  __ _____ ______ _   _ ______           ______ _             _ _    _ ______ _____  ____  \n");
+    printf("\t / ____/ __ \\|  \\/  |_   _|  ____| \\ | |___  /   /\\     |  ____| |           | | |  | |  ____/ ____|/ __ \\ \n");
+    printf("\t| |   | |  | | \\  / | | | | |__  |  \\| |  / /   /  \\    | |__  | |           | | |  | | |__ | |  __| |  | |\n");
+    printf("\t| |   | |  | | |\\/| | | | |  __| | . ` | / /   / /\\ \\   |  __| | |       _   | | |  | |  __|| | |_ | |  | |\n");
+    printf("\t| |___| |__| | |  | |_| |_| |____| |\\  |/ /__ / ____ \\  | |____| |____  | |__| | |__| | |___| |__| | |__| |\n");
+    printf("\t \\_____\\____/|_|  |_|_____|______|_| \\_/_____/_/    \\_\\ |______|______|  \\____/ \\____/|______\\_____|\\____/ \n");
+
+
 	
 	do{
 		printf("Elige una opción:\nSeleccionar cazador predeterminado (p) \nCrear nuevo cazador (n)\n");
@@ -25,14 +66,14 @@ int main(){
 		if(strlen(seleccion_c) > 2){ 
 			printf("Pon solo un caracter. \n");
 		}
-		if(seleccion_c[0] == 'p'){
+		if(seleccion_c[0] == 'p'|| seleccion_c[0] == 'P'){
 			cazadores = cazador_predeterminado();
 			for(int i = 0; i < 3; i++){
 				mostrar_cazador(&cazadores[i]);
 			}
 			num_cazadores = 3;
 			break;
-		}else if(seleccion_c[0] == 'n'){
+		}else if(seleccion_c[0] == 'n' || seleccion_c[0] == 'N'){
 			cazadores = crear_cazador(&num_cazadores);
 			break;
 		}else{
@@ -51,14 +92,14 @@ int main(){
 		if(strlen(seleccion_c) > 2){
 			printf("Pon solo un carácter. \n");
 		}
-		if(seleccion_c[0] == 'p'){
+		if(seleccion_c[0] == 'p'|| seleccion_c[0] == 'P'){
 			dragones = dragon_predeterminado();
 			for (int i = 0; i < 2; i++){
 				mostrar_dragon(&dragones[i]);
 			}
 			num_dragones = 2;
 			break;
-		}else if(seleccion_c[0] == 'n'){
+		}else if(seleccion_c[0] == 'n'|| seleccion_c[0] == 'N'){
 			dragones = crear_dragon(&num_dragones); 
 			break;
 		}else{
@@ -67,10 +108,7 @@ int main(){
 	}while (1);
 
 	
-	printf("\nPresiona Enter para continuar...");
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF); // Limpia el buffer
-	getchar(); // Espera un nuevo Enter
+	esperar_enter(); 
 
 
 	
