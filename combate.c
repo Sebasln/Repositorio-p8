@@ -19,7 +19,7 @@ void esperar_enter() {
 }
 
 int ataque_final() {
-    return (rand() % 100) < 50;
+    return (rand() % 100) < 1;
 }
 int es_critico() {
     return (rand() % 100) < 20;
@@ -124,9 +124,21 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                 }else{
                     cazadores[*eleccion_cazador].vida = 0;
                     printf("El cazador %s por desgracia no pudo ejecutar el ataque final con éxito y cayó derrotado en batalla.\n", cazadores[*eleccion_cazador].nombre);
+                    
+                     if(quedan_cazadores_vivos(cazadores, num_cazadores) != 1){
+                            printf("\n⚠️ No quedan cazadores vivos. \n");
+                            for(int i = 0; i < num_dragones; i++ ){
+                                if(dragones[i].vida > 0){
+                                mostrar_dragon(&dragones[i]);
+                                }
+                            }
+                            esperar_enter();
+                            historia_final_malo();
+                            return;
+                    }
                     break;
                 }
-            } else{ //mec      
+            } else{       
                 daño = cazadores[*eleccion_cazador].fuerza;
                 if (falla()){
                     daño = 0;
