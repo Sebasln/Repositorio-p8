@@ -19,7 +19,7 @@ void esperar_enter() {
 }
 
 int ataque_final() {
-    return (rand() % 100) < 1;
+    return (rand() % 100) < 50;
 }
 int es_critico() {
     return (rand() % 100) < 20;
