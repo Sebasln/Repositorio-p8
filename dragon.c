@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MIN_DRAGONES 2
+#define MIN_DRAGONES 3
 #define MAX_DRAGONES 5
 #define MAX_VIDA 660
 #define MAX_FUERZA 40
@@ -28,7 +28,7 @@ Dragon* dragon_predeterminado(){
 	}
 	inicializar_dragon( &dragones[0], "Shenlong", 20, 650, 3000);
 	inicializar_dragon( &dragones[1], "Kaido", 40, 450, 5000);
-
+	inicializar_dragon( &dragones[2], "Yilin", 40, 660, 7000);
 		
 	return dragones;
 
@@ -38,7 +38,7 @@ Dragon* crear_dragon(int * num_dragones){
 	int n = 0;
 	Dragon * dragones = dragon_predeterminado();
 
-	printf("Se han añadido 2 dragones predeterminados.\n");
+	printf("Se han añadido 3 dragones predeterminados.\n");
 	do{
 		printf("¿Cuántos dragones quieres añadir?(Máximo 2) ");
 		if (scanf("%d", &n) != 1){

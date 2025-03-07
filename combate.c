@@ -133,6 +133,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                                 }
                             }
                             esperar_enter();
+                            system("clear");
                             historia_final_malo();
                             return;
                     }
@@ -213,6 +214,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
             }
         }
         esperar_enter();
+        system("clear");
         historia_final_malo();
 	}else{
 		printf("\n🥳 No quedan dragones vivos. \n");
@@ -220,6 +222,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
             resultado(&cazadores[i]); 
         }
         esperar_enter();
+        system("clear");
         historia_final_bueno();
 	}
     sleep(1);

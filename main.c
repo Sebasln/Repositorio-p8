@@ -93,10 +93,10 @@ int main(){
 		}
 		if(seleccion_c[0] == 'p'|| seleccion_c[0] == 'P'){
 			dragones = dragon_predeterminado();
-			for (int i = 0; i < 2; i++){
+			for (int i = 0; i < 3; i++){
 				mostrar_dragon(&dragones[i]);
 			}
-			num_dragones = 2;
+			num_dragones = 3;
 			break;
 		}else if(seleccion_c[0] == 'n'|| seleccion_c[0] == 'N'){
 			dragones = crear_dragon(&num_dragones); 
