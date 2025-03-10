@@ -19,7 +19,7 @@ void esperar_enter() {
 }
 
 int ataque_final() {
-    return (rand() % 100) < 50;
+    return (rand() % 100) < 90;
 }
 int es_critico() {
     return (rand() % 100) < 20;
@@ -100,15 +100,15 @@ void seleccion_dragon(Dragon * dragones, int num_dragones, int * eleccion_dragon
 void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dragones, int * eleccion_cazador, int * eleccion_dragon ) {
     srand(time(NULL));
     Pocion * pociones;
-
+    pociones = pocion_predeterminada();
     while (quedan_cazadores_vivos(cazadores, num_cazadores) && quedan_dragones_vivos(dragones, num_dragones)) {
         seleccion_personaje(cazadores, num_cazadores, eleccion_cazador);
         seleccion_dragon(dragones, num_dragones, eleccion_dragon);
 
         system("clear");
         printf("\n=== ¡Comienza el combate entre %s y %s! ===\n",
-               cazadores[*eleccion_cazador].nombre,
-               dragones[*eleccion_dragon].nombre);
+         cazadores[*eleccion_cazador].nombre,
+         dragones[*eleccion_dragon].nombre);
 
         while (cazadores[*eleccion_cazador].vida > 0 && dragones[*eleccion_dragon].vida > 0) {
             int daño = 0;
@@ -125,17 +125,17 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                     cazadores[*eleccion_cazador].vida = 0;
                     printf("El cazador %s por desgracia no pudo ejecutar el ataque final con éxito y cayó derrotado en batalla.\n", cazadores[*eleccion_cazador].nombre);
                     
-                     if(quedan_cazadores_vivos(cazadores, num_cazadores) != 1){
-                            printf("\n⚠️ No quedan cazadores vivos. \n");
-                            for(int i = 0; i < num_dragones; i++ ){
-                                if(dragones[i].vida > 0){
+                    if(quedan_cazadores_vivos(cazadores, num_cazadores) != 1){
+                        printf("\n⚠️ No quedan cazadores vivos. \n");
+                        for(int i = 0; i < num_dragones; i++ ){
+                            if(dragones[i].vida > 0){
                                 mostrar_dragon(&dragones[i]);
-                                }
                             }
-                            esperar_enter();
-                            system("clear");
-                            historia_final_malo();
-                            return;
+                        }
+                        esperar_enter();
+                        system("clear");
+                        historia_final_malo();
+                        return;
                     }
                     break;
                 }
@@ -152,19 +152,24 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                 }
                 dragones[*eleccion_dragon].vida -= daño;
             }
-                if (dragones[*eleccion_dragon].vida <= 0) {
-                    printf("🎉 ¡%s ha derrotado al dragón %s!\n El cazador %s ha recibido %d oro.\n\n\n", cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].oro);
-                    cazadores[*eleccion_cazador].oro += dragones[*eleccion_dragon].oro;
-                    dragones[*eleccion_dragon].vida = 0;
-                    dragones[*eleccion_dragon].oro = 0;
+            if (dragones[*eleccion_dragon].vida <= 0) {
+                printf("🎉 ¡%s ha derrotado al dragón %s!\n El cazador %s ha recibido %d oro.\n\n\n", cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, dragones[*eleccion_dragon].oro);
+                cazadores[*eleccion_cazador].oro += dragones[*eleccion_dragon].oro;
+                dragones[*eleccion_dragon].vida = 0;
+                dragones[*eleccion_dragon].oro = 0;
                 if(quedan_dragones_vivos(dragones, num_dragones)){
                     printf("¿Quieres entrar a la tienda?(s/n) ");
                     char respuesta;
                     scanf(" %c", &respuesta);
-                    pociones = pocion_predeterminada();
+                    
                     if(respuesta == 's'|| respuesta == 'S'){   
                         tienda(pociones, cazadores, num_cazadores);
-                        esperar_enter();
+                        
+                        while (getchar() != '\n');
+                        printf("\nPresiona Enter para continuar...");
+                       
+
+                        getchar();
 
                         system("clear");
                     }else{
@@ -174,36 +179,36 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
 
                 break;
                 
-                }
-
-
-                esperar_enter();
-
-                
-                daño = dragones[*eleccion_dragon].fuerza;
-                if(falla()){
-                    daño = 0;
-                    printf("❌ El ataque de %s ha fallado contra %s.\n", dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre);
-                }else if (es_critico()) {
-                    daño *= 2;
-                    printf("🔥 ¡Golpe CRÍTICO del dragón %s! Hace %d de daño a %s.\n",
-                        dragones[*eleccion_dragon].nombre, daño, cazadores[*eleccion_cazador].nombre);
-                } else {
-                    printf("🐉 %s ataca a %s. Hace %d de daño.\n",
-                       dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, daño);
-                }
-                cazadores[*eleccion_cazador].vida -= daño;
-
-                if (cazadores[*eleccion_cazador].vida <= 0) {
-                    printf("💀 ¡El dragón %s ha derrotado a %s!\n\n\n", dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre);
-                    cazadores[*eleccion_cazador].vida = 0;
-                    break;
-                }
-           
-            
             }
 
+
+            esperar_enter();
+
+
+            daño = dragones[*eleccion_dragon].fuerza;
+            if(falla()){
+                daño = 0;
+                printf("❌ El ataque de %s ha fallado contra %s.\n", dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre);
+            }else if (es_critico()) {
+                daño *= 2;
+                printf("🔥 ¡Golpe CRÍTICO del dragón %s! Hace %d de daño a %s.\n",
+                    dragones[*eleccion_dragon].nombre, daño, cazadores[*eleccion_cazador].nombre);
+            } else {
+                printf("🐉 %s ataca a %s. Hace %d de daño.\n",
+                 dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre, daño);
+            }
+            cazadores[*eleccion_cazador].vida -= daño;
+
+            if (cazadores[*eleccion_cazador].vida <= 0) {
+                printf("💀 ¡El dragón %s ha derrotado a %s!\n\n\n", dragones[*eleccion_dragon].nombre, cazadores[*eleccion_cazador].nombre);
+                cazadores[*eleccion_cazador].vida = 0;
+                break;
+            }
+
+            
         }
+
+    }
     free(pociones);
 
     if(quedan_cazadores_vivos(cazadores, num_cazadores) != 1){
@@ -216,17 +221,17 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
         esperar_enter();
         system("clear");
         historia_final_malo();
-	}else{
-		printf("\n🥳 No quedan dragones vivos. \n");
-        for(int i = 0; i < num_cazadores; i++){
-            resultado(&cazadores[i]); 
-        }
-        esperar_enter();
-        system("clear");
-        historia_final_bueno();
-	}
-    sleep(1);
+    }else{
+      printf("\n🥳 No quedan dragones vivos. \n");
+      for(int i = 0; i < num_cazadores; i++){
+        resultado(&cazadores[i]); 
+    }
+    esperar_enter();
+    system("clear");
+    historia_final_bueno();
+}
+sleep(1);
 
-    
+
 
 }
