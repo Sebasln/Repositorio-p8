@@ -16,6 +16,6 @@ typedef struct {
 } Pocion;
 
 Pocion* pocion_predeterminada();
-void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores);
+void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores, int eleccion_cazador);
 
 #endif

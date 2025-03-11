@@ -163,7 +163,7 @@ void combate(Cazador *cazadores, Dragon *dragones, int num_cazadores, int num_dr
                     scanf(" %c", &respuesta);
                     
                     if(respuesta == 's'|| respuesta == 'S'){   
-                        tienda(pociones, cazadores, num_cazadores);
+                        tienda(pociones, cazadores, num_cazadores, *eleccion_cazador);
                         
                         while (getchar() != '\n');
                         printf("\nPresiona Enter para continuar...");

@@ -35,7 +35,7 @@ void mostrar_pociones(Pocion * pociones){
 	printf("Nombre: %s\n \tCoste:%d\n \tAumento Vida:%d\n \tAumento Fuerza:%d\n \tStock:%d\n\n", pociones->nombre, pociones->coste, pociones->curacion, pociones->aumento_fuerza, pociones->stock);
 }	
 
-void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores){
+void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores, int eleccion_cazador){
 	int compra_cazador = 0;
 	system("clear");
 	printf(" ____ ___ _____ _   ___     _______  _   _ ___ ____   ___  \n");
@@ -82,7 +82,7 @@ void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores){
 			printf("Ya no queda stock para esta poción.\n");
 			continue;
 		}
-		if(cazadores->oro < pociones[eleccion_pocion].coste){
+		if(cazadores[eleccion_cazador].oro < pociones[eleccion_pocion].coste){
 			printf("Pobre \n");
 			break;
 		}
