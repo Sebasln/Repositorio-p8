@@ -117,7 +117,7 @@ void tienda(Pocion * pociones, Cazador * cazadores, int num_cazadores, int elecc
 		}
 
 		pociones[eleccion_pocion].stock -= 1;
-		cazadores[compra_cazador].oro -= pociones[eleccion_pocion].coste;
+		cazadores[eleccion_cazador].oro -= pociones[eleccion_pocion].coste;
 		break;
 
 	}while (1);
